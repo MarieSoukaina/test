@@ -5,11 +5,13 @@
  */
 package velov.modele;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Jean-Mouloud
  */
-public class Station {
+public class Station implements Serializable {
     private String numeroIdentification;
     private String nomStation;
     private String localisationStation;

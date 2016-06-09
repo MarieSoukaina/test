@@ -56,6 +56,7 @@ public class ModeleTableList extends AbstractTableModel{
     }
 
     public void remStation(int[] index){
+        int lol;
         int tamere=0;
         for(int i : index){
             listeStation.remove(i-tamere++);

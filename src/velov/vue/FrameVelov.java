@@ -6,8 +6,15 @@
 package velov.vue;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -27,6 +34,7 @@ public class FrameVelov extends javax.swing.JFrame {
     boolean modeEdition;
     ModeleTableList modeleTableList;
     AbstractListModel modeleList;
+
     public FrameVelov() {
         modeleTableList = new ModeleTableList();
         modeleList = new AbstractListModel() {
@@ -68,6 +76,10 @@ public class FrameVelov extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        aProposFenetre = new javax.swing.JDialog();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        aProposBoutonQuitter = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -81,7 +93,8 @@ public class FrameVelov extends javax.swing.JFrame {
         nomStation = new javax.swing.JTextField();
         localisation = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList();
+        annuler = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFichier = new javax.swing.JMenu();
         menuFichierOuvrir = new javax.swing.JMenuItem();
@@ -89,6 +102,52 @@ public class FrameVelov extends javax.swing.JFrame {
         menuFichierQuitter = new javax.swing.JMenuItem();
         menuApropos = new javax.swing.JMenu();
         aPropos = new javax.swing.JMenuItem();
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel5.setText("JE SUIS LE SEL");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel6.setText("NIQUE TA MERE");
+
+        aProposBoutonQuitter.setText("Quitter");
+        aProposBoutonQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aProposBoutonQuitterActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout aProposFenetreLayout = new javax.swing.GroupLayout(aProposFenetre.getContentPane());
+        aProposFenetre.getContentPane().setLayout(aProposFenetreLayout);
+        aProposFenetreLayout.setHorizontalGroup(
+            aProposFenetreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aProposFenetreLayout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(34, 34, 34))
+            .addGroup(aProposFenetreLayout.createSequentialGroup()
+                .addGap(133, 133, 133)
+                .addComponent(aProposBoutonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(aProposFenetreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aProposFenetreLayout.createSequentialGroup()
+                    .addContainerGap(36, Short.MAX_VALUE)
+                    .addComponent(jLabel6)
+                    .addGap(14, 14, 14)))
+        );
+        aProposFenetreLayout.setVerticalGroup(
+            aProposFenetreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aProposFenetreLayout.createSequentialGroup()
+                .addContainerGap(149, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(aProposBoutonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(aProposFenetreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(aProposFenetreLayout.createSequentialGroup()
+                    .addGap(86, 86, 86)
+                    .addComponent(jLabel6)
+                    .addContainerGap(156, Short.MAX_VALUE)))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,9 +183,16 @@ public class FrameVelov extends javax.swing.JFrame {
         localisation.setEnabled(false);
 
         jList1.setModel(modeleList);
-        jList1.setDoubleBuffered(true);
         jList1.setEnabled(false);
         jScrollPane3.setViewportView(jList1);
+
+        annuler.setText("Annuler");
+        annuler.setEnabled(false);
+        annuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annulerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -150,7 +216,9 @@ public class FrameVelov extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(boutonCreer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(annuler)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                         .addComponent(boutonSupprimer)
                         .addGap(175, 175, 175))))
         );
@@ -178,7 +246,8 @@ public class FrameVelov extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutonCreer)
-                    .addComponent(boutonSupprimer))
+                    .addComponent(boutonSupprimer)
+                    .addComponent(annuler))
                 .addContainerGap())
         );
 
@@ -193,6 +262,11 @@ public class FrameVelov extends javax.swing.JFrame {
         menuFichier.add(menuFichierOuvrir);
 
         menuFichierSauvegarder.setText("Sauvergarder");
+        menuFichierSauvegarder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFichierSauvegarderActionPerformed(evt);
+            }
+        });
         menuFichier.add(menuFichierSauvegarder);
 
         menuFichierQuitter.setText("Quitter");
@@ -208,6 +282,11 @@ public class FrameVelov extends javax.swing.JFrame {
         menuApropos.setText("?");
 
         aPropos.setText("A propos");
+        aPropos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aProposActionPerformed(evt);
+            }
+        });
         menuApropos.add(aPropos);
 
         jMenuBar1.add(menuApropos);
@@ -239,102 +318,125 @@ public class FrameVelov extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuFichierQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFichierQuitterActionPerformed
-        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(this, "Souhaitez-vous quitter l'application ? ", "Quitter", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            this.aProposFenetre.dispose();
+            this.dispose();
+        }
     }//GEN-LAST:event_menuFichierQuitterActionPerformed
 
     private void boutonCreerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonCreerActionPerformed
-        if(!modeEdition){
-            boutonCreer.setText("Ok ?");
-            nomStation.setEnabled(true);
-            numeroStation.setEnabled(true);
-            localisation.setEnabled(true);
-            jList1.setEnabled(true);
-            modeEdition=true;
-        }
-        else{
-            int numArrond = jList1.getSelectedIndex()+1;
-            if(numeroStation.getText().equals("")){
+        if (!modeEdition) {
+            this.activation();
+        } else {
+            int numArrond = jList1.getSelectedIndex() + 1;
+            if (numeroStation.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Il faut remplir le numero station", "Erreur", JOptionPane.ERROR_MESSAGE);
-            }
-            else if(nomStation.getText().equals("")){
+            } else if (nomStation.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Il faut remplir le nom de la station", "Erreur", JOptionPane.ERROR_MESSAGE);
-            }
-            else if(localisation.getText().equals("")){
+            } else if (localisation.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Il faut remplir la localisation", "Erreur", JOptionPane.ERROR_MESSAGE);
-            }
-            else if(numArrond==0){
+            } else if (numArrond == 0) {
                 JOptionPane.showMessageDialog(this, "Il faut selectionner un arrondissement", "Erreur", JOptionPane.ERROR_MESSAGE);
-            }
-            else{
-                modeleTableList.addStation(new Station(numeroStation.getText(),nomStation.getText(),localisation.getText(),numArrond));
-                boutonCreer.setText("Créer");
-                nomStation.setEnabled(false);
-                numeroStation.setEnabled(false);
-                localisation.setEnabled(false);
-                jList1.setEnabled(false);
-                modeEdition=false;
+            } else {
+                modeleTableList.addStation(new Station(numeroStation.getText(), nomStation.getText(), localisation.getText(), numArrond));
+                this.remiseAzero();
             }
         }
     }//GEN-LAST:event_boutonCreerActionPerformed
 
     private void boutonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonSupprimerActionPerformed
-        
+        if (jTable1.getSelectedRowCount() != 0) {
+            int[] table = this.jTable1.getSelectedRows();
+            this.modeleTableList.remStation(table);
+            this.remiseAzero();
+        } else {
+            JOptionPane.showMessageDialog(this, "NIQUE TA GROSSE MERE", "NTM", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_boutonSupprimerActionPerformed
 
     private void menuFichierOuvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFichierOuvrirActionPerformed
         JFileChooser ouvrirFichier = new JFileChooser();
         ouvrirFichier.showDialog(this, "Ouvrir");
-        if(ouvrirFichier.getSelectedFile() != null){
+        if (ouvrirFichier.getSelectedFile() != null) {
             File fichier = ouvrirFichier.getSelectedFile();
-            
+            try {
+                ObjectInputStream os = new ObjectInputStream(new FileInputStream(fichier));
+                ArrayList<Station> liste = (ArrayList<Station>) os.readObject();
+                this.modeleTableList.setStation(liste);
+            } catch (IOException | ClassNotFoundException ex) {
+                Logger.getLogger(FrameVelov.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_menuFichierOuvrirActionPerformed
+
+    private void menuFichierSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFichierSauvegarderActionPerformed
+        JFileChooser sauvegarderFichier = new JFileChooser();
+        sauvegarderFichier.setDialogType(JFileChooser.SAVE_DIALOG);
+        sauvegarderFichier.showDialog(this, "Sauvegarder");
+        File fichier = sauvegarderFichier.getSelectedFile();
+        if (fichier != null) {
+            try {
+                ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fichier));
+                os.writeObject(this.modeleTableList.getStation());
+            } catch (IOException ex) {
+                Logger.getLogger(FrameVelov.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_menuFichierSauvegarderActionPerformed
+
+    private void aProposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aProposActionPerformed
+        aProposFenetre.setVisible(true);
+    }//GEN-LAST:event_aProposActionPerformed
+
+    private void aProposBoutonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aProposBoutonQuitterActionPerformed
+        aProposFenetre.dispose();
+    }//GEN-LAST:event_aProposBoutonQuitterActionPerformed
+
+    private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerActionPerformed
+        this.remiseAzero();
+    }//GEN-LAST:event_annulerActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameVelov.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameVelov.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameVelov.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrameVelov.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new FrameVelov().setVisible(true);
+                FrameVelov frame = new FrameVelov();
+                frame.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aPropos;
+    private javax.swing.JButton aProposBoutonQuitter;
+    private javax.swing.JDialog aProposFenetre;
+    private javax.swing.JButton annuler;
     private javax.swing.JButton boutonCreer;
     private javax.swing.JButton boutonSupprimer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JList jList1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -349,4 +451,29 @@ public class FrameVelov extends javax.swing.JFrame {
     private javax.swing.JTextField nomStation;
     private javax.swing.JTextField numeroStation;
     // End of variables declaration//GEN-END:variables
+
+    private void remiseAzero() {
+        boutonCreer.setText("Créer");
+        nomStation.setEnabled(false);
+        numeroStation.setEnabled(false);
+        localisation.setEnabled(false);
+        jList1.setEnabled(false);
+        modeEdition = false;
+        nomStation.setText("");
+        numeroStation.setText("");
+        localisation.setText("");
+        annuler.setEnabled(false);
+        jList1.clearSelection();
+        jTable1.clearSelection();
+    }
+
+    private void activation() {
+        boutonCreer.setText("Ok ?");
+        nomStation.setEnabled(true);
+        numeroStation.setEnabled(true);
+        localisation.setEnabled(true);
+        jList1.setEnabled(true);
+        modeEdition = true;
+        annuler.setEnabled(true);
+    }
 }
