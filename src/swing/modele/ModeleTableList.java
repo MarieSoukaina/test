@@ -55,6 +55,12 @@ public class ModeleTableList extends AbstractTableModel{
         fireTableStructureChanged();
     }
 
+    public void remStation(int[] index){
+        int tamere=0;
+        for(int i : index){
+            listeStation.remove(i-tamere++);
+        }
+    }
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
